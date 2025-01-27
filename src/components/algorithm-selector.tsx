@@ -45,10 +45,10 @@ export const AlgorithmSelector = memo(function AlgorithmSelector({
           className={cn(
             "relative flex flex-col items-start px-3 py-2 rounded-md text-sm",
             "transition-[background,transform] duration-150 ease-out transform-gpu",
-            "hover:bg-white/50 dark:hover:bg-zinc-700/50",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400",
+            "hover:bg-accent/5 dark:hover:bg-accent/10",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
             value === algorithm.value && [
-              "bg-white dark:bg-zinc-700",
+              "bg-accent/10 dark:bg-accent/20",
               "scale-[0.98]",
             ]
           )}
@@ -58,19 +58,26 @@ export const AlgorithmSelector = memo(function AlgorithmSelector({
               className={cn(
                 "font-medium transition-colors duration-150",
                 value === algorithm.value
-                  ? "text-zinc-900 dark:text-zinc-100"
-                  : "text-zinc-600 dark:text-zinc-400"
+                  ? "text-accent-foreground dark:text-accent-foreground"
+                  : "text-zinc-600 dark:text-zinc-400 hover:text-accent/80 dark:hover:text-accent/80"
               )}
             >
               {algorithm.label}
             </span>
             {value === algorithm.value && (
-              <span className="text-blue-500 animate-in zoom-in duration-150">
+              <span className="text-accent animate-in zoom-in duration-150">
                 <Check className="w-4 h-4" />
               </span>
             )}
           </div>
-          <span className="text-xs text-zinc-500 dark:text-zinc-500">
+          <span
+            className={cn(
+              "text-xs",
+              value === algorithm.value
+                ? "text-accent/70 dark:text-accent/70"
+                : "text-zinc-500 dark:text-zinc-500"
+            )}
+          >
             {algorithm.description}
           </span>
         </button>
