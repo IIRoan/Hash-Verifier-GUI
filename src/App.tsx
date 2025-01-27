@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Check, X, Upload, Copy, FileIcon, Moon, Sun } from "lucide-react";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
+import { open } from "@tauri-apps/plugin-dialog";
 import { AlgorithmSelector, Algorithm } from "@/components/algorithm-selector";
-import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 interface ProgressPayload {
@@ -41,7 +41,6 @@ const HashDisplay = memo(function HashDisplay({
           className="absolute right-2 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 transition-opacity duration-150"
           onClick={() => {
             onCopy();
-            toast.success("Hash copied to clipboard");
           }}
         >
           <Copy className="w-4 h-4" />
@@ -123,42 +122,27 @@ export default function HashVerifier() {
 
   const selectFile = useCallback(async () => {
     try {
-      const input = document.createElement("input");
-      input.type = "file";
+      // Use the dialog plugin to select a file
+      const selected = await open({
+        multiple: false,
+        directory: false,
+        filters: [
+          {
+            name: "All Files",
+            extensions: ["*"],
+          },
+        ],
+      });
 
-      input.onchange = async (event) => {
-        const files = (event.target as HTMLInputElement).files;
-        if (files && files[0]) {
-          const file = files[0];
-          const reader = new FileReader();
-
-          reader.onload = async () => {
-            try {
-              const path = await invoke<string>("get_file_path", {
-                file: {
-                  name: file.name,
-                  size: file.size,
-                  type: file.type,
-                  data: reader.result,
-                },
-              });
-
-              setFilePath(path);
-              setFileName(file.name);
-              resetState();
-            } catch (e) {
-              console.error("Error getting file path:", e);
-              toast.error("Failed to process file");
-            }
-          };
-          reader.readAsDataURL(file);
-        }
-      };
-
-      input.click();
+      if (selected) {
+        const path = selected as string;
+        const name = path.split(/[\\/]/).pop() || "Unknown file";
+        setFilePath(path);
+        setFileName(name);
+        resetState();
+      }
     } catch (e) {
       console.error("Error selecting file:", e);
-      toast.error("Failed to select file");
     }
   }, [resetState]);
 
@@ -179,7 +163,6 @@ export default function HashVerifier() {
       setCalculatedHash(response.hash);
     } catch (error) {
       console.error("Error calculating hash:", error);
-      toast.error("Failed to calculate hash");
     } finally {
       setIsCalculating(false);
       setProgress(null);
@@ -193,9 +176,6 @@ export default function HashVerifier() {
           ? "match"
           : "mismatch";
       setVerificationStatus(status);
-      toast[status === "match" ? "success" : "error"](
-        status === "match" ? "Hashes match!" : "Hashes don't match"
-      );
     }
   }, [expectedHash, calculatedHash]);
 
