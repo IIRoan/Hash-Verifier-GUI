@@ -11,7 +11,6 @@ interface HashDisplayProps {
 
 export const HashDisplay = memo(function HashDisplay({
   hash,
-  isDark,
   onCopy,
 }: HashDisplayProps) {
   const [copied, setCopied] = useState(false);

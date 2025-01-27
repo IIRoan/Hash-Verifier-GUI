@@ -19,7 +19,7 @@ interface ProgressPayload {
 }
 
 export default function HashVerifier() {
-  const [filePath, setFilePath] = useState<string>("");
+  const [, setFilePath] = useState<string>("");
   const [fileName, setFileName] = useState<string | null>(null);
   const [algorithm, setAlgorithm] = useState<Algorithm>("sha256");
   const [calculatedHash, setCalculatedHash] = useState<string>("");
