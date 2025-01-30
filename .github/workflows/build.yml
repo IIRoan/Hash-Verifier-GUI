@@ -44,10 +44,11 @@ jobs:
           mkdir -p build-dir
           cp src-tauri/target/release/bundle/deb/hash-verifier*.deb build-dir/hash-verifier.deb
           flatpak-builder --user --force-clean --repo=repo build-dir com.hash-verifier.app.yml
-          flatpak build-bundle repo hash-verifier.flatpak com.hashverifier.app
+          flatpak build-bundle repo hash-verifier-uncompressed.flatpak com.hashverifier.app
 
-      - name: Upload Flatpak artifact
+      - name: Upload Uncompressed Flatpak
         uses: actions/upload-artifact@v4
         with:
-          name: hash-verifier-flatpak
-          path: hash-verifier.flatpak
+          name: Hash-Verifier
+          path: hash-verifier-uncompressed.flatpak
+          compression-level: 0

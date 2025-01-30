@@ -15,10 +15,6 @@ modules:
   - name: binary
     buildsystem: simple
     sources:
-      - type: file
-        url: https://github.com/IIRoan/Hash-Verifier-GUI/releases/download/0.01/hash-verifier_0.1.0_amd64.deb
-        sha256: 95d7da886d389e069418c5ebb5065e526b893477c5e8749bd9c672ea44bde8eb
-        dest-filename: hash-verifier.deb
       - type: dir
         path: images
         dest: images
