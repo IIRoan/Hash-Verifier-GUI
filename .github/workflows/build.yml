@@ -1,0 +1,59 @@
+name: Build and Package
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  build-deb-and-flatpak:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "latest"
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev
+          sudo apt-get install -y flatpak flatpak-builder
+
+      - name: Setup Flatpak
+        run: |
+          flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+          flatpak install -y flathub org.gnome.Platform//47 org.gnome.Sdk//47
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build Tauri app
+        run: bun run tauri build
+
+      - name: Build Flatpak
+        run: |
+          mkdir -p build-dir
+          cp src-tauri/target/release/bundle/deb/hash-verifier*.deb build-dir/hash-verifier.deb
+          flatpak-builder --force-clean --repo=repo build-dir com.hash-verifier.app.yml
+          flatpak build-bundle repo hash-verifier.flatpak com.hashverifier.app
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            src-tauri/target/release/bundle/deb/*.deb
+            hash-verifier.flatpak
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
