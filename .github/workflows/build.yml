@@ -19,7 +19,7 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Install Rust
+      - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
 
       - name: Install system dependencies
@@ -30,8 +30,8 @@ jobs:
 
       - name: Setup Flatpak
         run: |
-          flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-          flatpak install -y flathub org.gnome.Platform//47 org.gnome.Sdk//47
+          flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+          flatpak --user install -y flathub org.gnome.Platform//47 org.gnome.Sdk//47
 
       - name: Install dependencies
         run: bun install
@@ -43,7 +43,7 @@ jobs:
         run: |
           mkdir -p build-dir
           cp src-tauri/target/release/bundle/deb/hash-verifier*.deb build-dir/hash-verifier.deb
-          flatpak-builder --force-clean --repo=repo build-dir com.hash-verifier.app.yml
+          flatpak-builder --user --force-clean --repo=repo build-dir com.hash-verifier.app.yml
           flatpak build-bundle repo hash-verifier.flatpak com.hashverifier.app
 
       - name: Upload Flatpak artifact
