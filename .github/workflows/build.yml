@@ -41,8 +41,9 @@ jobs:
 
       - name: Build Flatpak
         run: |
-          mkdir -p build-dir
-          cp src-tauri/target/release/bundle/deb/hash-verifier*.deb build-dir/hash-verifier.deb
+          mkdir -p flatpak-sources
+          cp src-tauri/target/release/bundle/deb/hash-verifier_*.deb flatpak-sources/hash-verifier.deb
+          ls -la flatpak-sources/ 
           flatpak-builder --user --force-clean --repo=repo build-dir com.hash-verifier.app.yml
           flatpak build-bundle repo hash-verifier-uncompressed.flatpak com.hashverifier.app
 
