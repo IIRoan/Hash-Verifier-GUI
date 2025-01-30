@@ -42,11 +42,11 @@ jobs:
       - name: Build Flatpak
         run: |
           mkdir -p flatpak-sources
-          cp src-tauri/target/release/bundle/deb/hash-verifier_*.deb flatpak-sources/hash-verifier.deb
-          ls -la flatpak-sources/ 
+          cp src-tauri/target/release/bundle/deb/hash-verifier*.deb hash-verifier.deb
+          ls -la
           flatpak-builder --user --force-clean --repo=repo build-dir com.hash-verifier.app.yml
           flatpak build-bundle repo hash-verifier-uncompressed.flatpak com.hashverifier.app
-
+          
       - name: Upload Uncompressed Flatpak
         uses: actions/upload-artifact@v4
         with:
