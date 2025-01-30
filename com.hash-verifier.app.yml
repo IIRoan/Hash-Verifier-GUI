@@ -20,6 +20,8 @@ modules:
         dest: images
       - type: file
         path: com.hashverifier.app.desktop
+      - type: file
+        path: com.hashverifier.app.metainfo.xml
     build-commands:
       - ar -x hash-verifier.deb
       - tar -xf data.tar.gz

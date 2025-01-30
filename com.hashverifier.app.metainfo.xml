@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.hashverifier.app</id>
+  <name>Hash Verifier</name>
+  <summary>Verify file hashes easily</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+
+  <description>
+    <p>
+      A simple and user-friendly tool to verify file hashes. Compare hashes of your files against known good hashes to verify file integrity.
+    </p>
+    <p>Features:</p>
+    <ul>
+        <li>Support for multiple hash algorithms (SHA-256, SHA-512, MD5)</li>
+        <li>Dark mode support with system theme detection</li>
+        <li>Optimized performance with parallel processing for large files</li>
+        <li>One-click hash copying and verification</li>
+        <li>Memory-efficient handling of large files using memory mapping</li>
+        <li>Visual feedback for hash matching status</li>
+    </ul>
+  </description>
+
+  <launchable type="desktop-id">com.hashverifier.app.desktop</launchable>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/IIRoan/Hash-Verifier-GUI/refs/heads/local-files/images/image1.png</image>
+      <caption>Main application window</caption>
+    </screenshot>
+  </screenshots>
+
+  <releases>
+    <release version="0.1.0" date="2025-01-30">
+      <description>
+        <p>Initial release</p>
+      </description>
+    </release>
+  </releases>
+
+  <url type="homepage">https://github.com/IIRoan/Hash-Verifier-GUI</url>
+  <developer_name>IIRoan</developer_name>
+  <update_contact>hash-gui@lunary.roan.zip</update_contact>
+
+  <content_rating type="oars-1.1" />
+</component>
