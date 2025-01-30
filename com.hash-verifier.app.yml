@@ -1,16 +1,16 @@
 id: com.hashverifier.app
-
 runtime: org.gnome.Platform
-runtime-version: "46"
+runtime-version: "47"
 sdk: org.gnome.Sdk
-
-command: tauri-app
+command: hash-verifier
 finish-args:
   - --socket=wayland
   - --socket=fallback-x11
+  - --socket=x11
   - --device=dri
   - --share=ipc
-
+  - --filesystem=home:ro
+  - --env=WEBKIT_DISABLE_COMPOSITING_MODE=1
 modules:
   - name: binary
     buildsystem: simple
@@ -18,13 +18,23 @@ modules:
       - type: file
         url: https://github.com/IIRoan/Hash-Verifier-GUI/releases/download/0.01/hash-verifier_0.1.0_amd64.deb
         sha256: 95d7da886d389e069418c5ebb5065e526b893477c5e8749bd9c672ea44bde8eb
-        only-arches: [x86_64]
+        dest-filename: hash-verifier.deb
+      - type: dir
+        path: images
+        dest: images
+      - type: file
+        path: com.hashverifier.app.desktop
     build-commands:
-      - ar -x *.deb
+      - ar -x hash-verifier.deb
       - tar -xf data.tar.gz
-      - "install -Dm755 usr/bin/tauri-app /app/bin/tauri-app"
-      - install -Dm644 usr/share/applications/yourapp.desktop /app/share/applications/org.your.id.desktop
-      - install -Dm644 usr/share/icons/hicolor/128x128/apps/yourapp.png /app/share/icons/hicolor/128x128/apps/org.your.id.png
-      - install -Dm644 usr/share/icons/hicolor/32x32/apps/yourapp.png /app/share/icons/hicolor/32x32/apps/org.your.id.png
-      - install -Dm644 usr/share/icons/hicolor/256x256@2/apps/yourapp.png /app/share/icons/hicolor/256x256@2/apps/org.your.id.png
-      - install -Dm644 org.your.id.metainfo.xml /app/share/metainfo/org.your.id.metainfo.xml
+      - "install -Dm755 usr/bin/hash-verifier /app/bin/hash-verifier"
+      - rm -f /app/share/applications/hash-verifier.desktop
+      - rm -f /app/share/applications/com.hashverifier.app.desktop
+      - install -Dm644 com.hashverifier.app.desktop /app/share/applications/com.hashverifier.app.desktop
+      - |
+        for size in 32x32 128x128 256x256; do
+          mkdir -p "/app/share/icons/hicolor/${size}/apps"
+          cp "images/icons/hicolor/${size}/apps/com.hashverifier.app.png" "/app/share/icons/hicolor/${size}/apps/"
+        done
+      - mkdir -p "/app/share/icons/hicolor/scalable/apps"
+      - cp "images/icons/hicolor/scalable/apps/com.hashverifier.app.svg" "/app/share/icons/hicolor/scalable/apps/"

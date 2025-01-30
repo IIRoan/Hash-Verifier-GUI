@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Hash Verifier
+Comment=Verify file hashes
+Exec=hash-verifier
+Icon=com.hashverifier.app
+Categories=Utility;Security;
+Terminal=false
+StartupNotify=true

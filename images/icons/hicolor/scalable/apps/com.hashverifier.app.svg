@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background circle with darker shade -->
+  <circle cx="256" cy="256" r="240" fill="#2F3437"/>
+
+  <!-- Hash symbol-->
+  <g fill="#8FBC8F" transform="translate(256 256) scale(1.2) translate(-256 -256)">
+    <!-- Vertical lines -->
+    <rect x="180" y="100" width="40" height="312" rx="20"/>
+    <rect x="292" y="100" width="40" height="312" rx="20"/>
+
+    <!-- Horizontal lines -->
+    <rect x="100" y="180" width="312" height="40" rx="20"/>
+    <rect x="100" y="292" width="312" height="40" rx="20"/>
+  </g>
+
+  <!-- Checkmark overlay-->
+  <path
+    d="M180 380 L260 460 L460 260"
+    stroke="white"
+    stroke-width="45"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+    filter="drop-shadow(0 0 8px rgba(0,0,0,0.3))"
+  />
+</svg>
