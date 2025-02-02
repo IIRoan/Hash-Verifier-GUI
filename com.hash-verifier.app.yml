@@ -18,20 +18,22 @@ modules:
       - type: file
         path: hash-verifier.deb
       - type: dir
-        path: icons
+        path: src-tauri/icons
         dest: images/icons
       - type: file
-        path: com.hash-verifier.app.desktop
+        path: com.hashverifier.app.desktop
       - type: file
-        path: com.hash-verifier.app.metainfo.xml
+        path: com.hashverifier.app.metainfo.xml
     build-commands:
       - ar -x hash-verifier.deb
       - tar -xf data.tar.xz || tar -xf data.tar.gz
       - "install -Dm755 usr/bin/hash-verifier /app/bin/hash-verifier"
-      - install -Dm644 com.hash-verifier.app.desktop /app/share/applications/com.hash-verifier.app.desktop
-      - install -Dm644 com.hash-verifier.app.metainfo.xml /app/share/metainfo/com.hash-verifier.app.metainfo.xml
-      - |
-        for size in 32x32 128x128 256x256; do
-          install -Dm644 "images/icons/hicolor/${size}/apps/com.hash-verifier.app.png" "/app/share/icons/hicolor/${size}/apps/com.hash-verifier.app.png"
-        done
-      - install -Dm644 "images/icons/hicolor/scalable/apps/com.hash-verifier.app.svg" "/app/share/icons/hicolor/scalable/apps/com.hash-verifier.app.svg"
+      - install -Dm644 com.hashverifier.app.desktop /app/share/applications/com.hashverifier.app.desktop
+      - install -Dm644 com.hashverifier.app.metainfo.xml /app/share/metainfo/com.hashverifier.app.metainfo.xml
+      - mkdir -p "/app/share/icons/hicolor/32x32/apps"
+      - mkdir -p "/app/share/icons/hicolor/128x128/apps"
+      - mkdir -p "/app/share/icons/hicolor/256x256/apps"
+      - install -Dm644 "images/icons/32x32.png" "/app/share/icons/hicolor/32x32/apps/com.hash-verifier.app.png"
+      - install -Dm644 "images/icons/128x128.png" "/app/share/icons/hicolor/128x128/apps/com.hash-verifier.app.png"
+      - install -Dm644 "images/icons/128x128@2x.png" "/app/share/icons/hicolor/256x256/apps/com.hash-verifier.app.png"
+      - install -Dm644 "images/icons/icon.svg" "/app/share/icons/hicolor/scalable/apps/com.hash-verifier.app.svg"
