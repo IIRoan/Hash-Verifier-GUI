@@ -3,6 +3,9 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-linux:
     runs-on: ubuntu-latest
@@ -39,9 +42,6 @@ jobs:
           flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
           flatpak --user install -y flathub org.gnome.Platform//47 org.gnome.Sdk//47
           cp src-tauri/target/release/bundle/deb/hash-verifier_*.deb hash-verifier.deb
-          # Verify files exist
-          ls -la
-          ls -la src-tauri/icons/
 
       - name: Build Flatpak
         run: |
