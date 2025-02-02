@@ -45,8 +45,8 @@ jobs:
 
       - name: Build Flatpak
         run: |
-          flatpak-builder --user --force-clean --repo=repo build-dir com.hash-verifier.app.yml
-          flatpak build-bundle repo hash-verifier.flatpak com.hash-verifier.app
+          flatpak-builder --user --force-clean --repo=repo build-dir com.hashverifier.app.yml
+          flatpak build-bundle repo hash-verifier.flatpak com.hashverifier.app
 
       - name: Upload Release
         uses: softprops/action-gh-release@v1
