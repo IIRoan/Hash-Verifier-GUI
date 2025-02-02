@@ -1,4 +1,4 @@
-id: com.hashverifier.app
+id: com.hash-verifier.app
 runtime: org.gnome.Platform
 runtime-version: "47"
 sdk: org.gnome.Sdk
@@ -15,24 +15,23 @@ modules:
   - name: binary
     buildsystem: simple
     sources:
+      - type: file
+        path: hash-verifier.deb
       - type: dir
-        path: images
-        dest: images
+        path: icons
+        dest: images/icons
       - type: file
-        path: com.hashverifier.app.desktop
+        path: com.hash-verifier.app.desktop
       - type: file
-        path: com.hashverifier.app.metainfo.xml
+        path: com.hash-verifier.app.metainfo.xml
     build-commands:
       - ar -x hash-verifier.deb
-      - tar -xf data.tar.gz
+      - tar -xf data.tar.xz || tar -xf data.tar.gz
       - "install -Dm755 usr/bin/hash-verifier /app/bin/hash-verifier"
-      - rm -f /app/share/applications/hash-verifier.desktop
-      - rm -f /app/share/applications/com.hashverifier.app.desktop
-      - install -Dm644 com.hashverifier.app.desktop /app/share/applications/com.hashverifier.app.desktop
+      - install -Dm644 com.hash-verifier.app.desktop /app/share/applications/com.hash-verifier.app.desktop
+      - install -Dm644 com.hash-verifier.app.metainfo.xml /app/share/metainfo/com.hash-verifier.app.metainfo.xml
       - |
         for size in 32x32 128x128 256x256; do
-          mkdir -p "/app/share/icons/hicolor/${size}/apps"
-          cp "images/icons/hicolor/${size}/apps/com.hashverifier.app.png" "/app/share/icons/hicolor/${size}/apps/"
+          install -Dm644 "images/icons/hicolor/${size}/apps/com.hash-verifier.app.png" "/app/share/icons/hicolor/${size}/apps/com.hash-verifier.app.png"
         done
-      - mkdir -p "/app/share/icons/hicolor/scalable/apps"
-      - cp "images/icons/hicolor/scalable/apps/com.hashverifier.app.svg" "/app/share/icons/hicolor/scalable/apps/"
+      - install -Dm644 "images/icons/hicolor/scalable/apps/com.hash-verifier.app.svg" "/app/share/icons/hicolor/scalable/apps/com.hash-verifier.app.svg"

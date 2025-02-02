@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Check, X, Upload, FileIcon, Moon, Sun } from "lucide-react";
 import { invoke } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
+import { listen } from "@tauri-apps/api/event";
 
 import {
   AlgorithmSelector,
@@ -30,6 +31,17 @@ export default function HashVerifier() {
   const [isCalculating, setIsCalculating] = useState(false);
   const [progress, setProgress] = useState<ProgressPayload | null>(null);
   const [isDark, setIsDark] = useState(false);
+
+  // Set up event listener for hash progress
+  useEffect(() => {
+    const unlisten = listen<ProgressPayload>("hash-progress", (event) => {
+      setProgress(event.payload);
+    });
+
+    return () => {
+      unlisten.then((fn) => fn()); // Cleanup listener
+    };
+  }, []);
 
   const resetState = useCallback(() => {
     setCalculatedHash("");
@@ -81,7 +93,6 @@ export default function HashVerifier() {
       setFilePath(path);
       setFileName(name);
       resetState();
-
       setIsCalculating(true);
 
       try {
@@ -176,7 +187,12 @@ export default function HashVerifier() {
             <div className="flex flex-col items-center gap-4 text-zinc-600 dark:text-zinc-300">
               <FileIcon className="w-12 h-12 text-accent/70" />
               <span className="text-base font-medium">{fileName}</span>
-              {progress && <ProgressIndicator progress={progressPercentage} />}
+              {isCalculating && progress && (
+                <ProgressIndicator
+                  progress={progressPercentage}
+                  fileSize={progress.total}
+                />
+              )}
             </div>
           ) : (
             <div className="flex flex-col items-center gap-3 text-zinc-500 dark:text-zinc-400">
