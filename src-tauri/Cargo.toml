@@ -1,8 +1,8 @@
 [package]
 name = "hash-verifier"
 version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+description = "A simple Hash sha256/512 md5 generator UI"
+authors = ["IIRoan"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -25,10 +25,5 @@ serde_json = "1.0"
 sha2 = "0.10"
 md5 = "0.7"
 hex = "0.4"
-dirs = "5.0"
-chrono = "0.4"
-sanitize-filename = "0.5"
 base64 = "0.21"
 tauri-plugin-dialog = "2"
-memmap2 = "0.5.10"
-rayon = "1.7"
