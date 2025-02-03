@@ -41,12 +41,12 @@ jobs:
           sudo apt-get install -y flatpak flatpak-builder
           flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
           flatpak --user install -y flathub org.gnome.Platform//47 org.gnome.Sdk//47
-          cp src-tauri/target/release/bundle/deb/hash-verifier_*.deb hash-verifier.deb
+          cp src-tauri/target/release/bundle/deb/hashverifier_*.deb hashverifier.deb
 
       - name: Build Flatpak
         run: |
           flatpak-builder --user --force-clean --repo=repo build-dir com.hashverifier.app.yml
-          flatpak build-bundle repo hash-verifier.flatpak com.hashverifier.app
+          flatpak build-bundle repo hashverifier.flatpak com.hashverifier.app
 
       - name: Upload Release
         uses: softprops/action-gh-release@v1
@@ -54,7 +54,7 @@ jobs:
         with:
           files: |
             src-tauri/target/release/bundle/deb/*.deb
-            hash-verifier.flatpak
+            hashverifier.flatpak
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
