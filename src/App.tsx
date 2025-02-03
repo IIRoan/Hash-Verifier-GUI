@@ -5,6 +5,7 @@ import { Check, X, Upload, FileIcon, Moon, Sun } from "lucide-react";
 import { invoke } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
 import { listen } from "@tauri-apps/api/event";
+import { GitHubLink } from "@/components/github-link";
 
 import {
   AlgorithmSelector,
@@ -280,6 +281,7 @@ export default function HashVerifier() {
           </div>
         )}
       </div>
+      <GitHubLink />
     </div>
   );
 }
