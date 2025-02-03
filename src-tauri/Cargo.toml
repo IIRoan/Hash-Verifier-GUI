@@ -1,5 +1,5 @@
 [package]
-name = "hash-verifier"
+name = "hashverifier"
 version = "0.1.0"
 description = "A simple Hash sha256/512 md5 generator UI"
 authors = ["IIRoan"]
