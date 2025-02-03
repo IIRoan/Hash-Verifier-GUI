@@ -2,7 +2,7 @@ id: com.hashverifier.app
 runtime: org.gnome.Platform
 runtime-version: "47"
 sdk: org.gnome.Sdk
-command: hash-verifier
+command: hashverifier
 finish-args:
   - --socket=wayland
   - --socket=fallback-x11
@@ -16,7 +16,7 @@ modules:
     buildsystem: simple
     sources:
       - type: file
-        path: hash-verifier.deb
+        path: hashverifier.deb
       - type: dir
         path: src-tauri/icons
         dest: images/icons
@@ -25,9 +25,9 @@ modules:
       - type: file
         path: com.hashverifier.app.metainfo.xml
     build-commands:
-      - ar -x hash-verifier.deb
+      - ar -x hashverifier.deb
       - tar -xf data.tar.xz || tar -xf data.tar.gz
-      - "install -Dm755 usr/bin/hash-verifier /app/bin/hash-verifier"
+      - "install -Dm755 usr/bin/hashverifier /app/bin/hashverifier"
       - install -Dm644 com.hashverifier.app.desktop /app/share/applications/com.hashverifier.app.desktop
       - install -Dm644 com.hashverifier.app.metainfo.xml /app/share/metainfo/com.hashverifier.app.metainfo.xml
       - mkdir -p "/app/share/icons/hicolor/32x32/apps"
