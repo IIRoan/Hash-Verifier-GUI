@@ -5,8 +5,9 @@ import { Check, X, Upload, FileIcon, Moon, Sun } from "lucide-react";
 import { invoke } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
 import { listen } from "@tauri-apps/api/event";
-import { GitHubLink } from "@/components/github-link";
+import GitHubLink from "@/components/github-link";
 import AppVersion from "@/components/appversion";
+import ThemeToggle from "@/components/themetoggle";
 
 import {
   AlgorithmSelector,
@@ -34,14 +35,13 @@ export default function HashVerifier() {
   const [progress, setProgress] = useState<ProgressPayload | null>(null);
   const [isDark, setIsDark] = useState(false);
 
-  // Set up event listener for hash progress
   useEffect(() => {
     const unlisten = listen<ProgressPayload>("hash-progress", (event) => {
       setProgress(event.payload);
     });
 
     return () => {
-      unlisten.then((fn) => fn()); // Cleanup listener
+      unlisten.then((fn) => fn());
     };
   }, []);
 
@@ -264,17 +264,11 @@ export default function HashVerifier() {
           </div>
         )}
       </div>
+
+      {/* Bottom Controls */}
       <GitHubLink />
       <AppVersion />
-      <Button
-        variant="ghost"
-        size="icon"
-        className="fixed bottom-4 left-4 text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
-        onClick={toggleTheme}
-        title="Toggle Theme"
-      >
-        {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-      </Button>
+      <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
     </div>
   );
 }
