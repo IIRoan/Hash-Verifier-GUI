@@ -1,13 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
+import { openUrl } from "@tauri-apps/plugin-opener";
 
 export function GitHubLink() {
-  const openGitHubRepo = () => {
-    window.open(
-      "https://github.com/IIRoan/Hash-Verifier-GUI",
-      "_blank",
-      "noopener,noreferrer"
-    );
+  const openGitHubRepo = async () => {
+    openUrl("https://github.com/IIRoan/Hash-Verifier-GUI");
   };
 
   return (

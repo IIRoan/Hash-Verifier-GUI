@@ -6,6 +6,7 @@ import { invoke } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
 import { listen } from "@tauri-apps/api/event";
 import { GitHubLink } from "@/components/github-link";
+import AppVersion from "@/components/appversion";
 
 import {
   AlgorithmSelector,
@@ -147,24 +148,6 @@ export default function HashVerifier() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-900 p-6">
       <div className="max-w-2xl mx-auto space-y-6">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-semibold text-zinc-800 dark:text-zinc-200">
-            Hash Verifier
-          </h1>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="transition-transform duration-150 ease-out transform-gpu hover:text"
-            onClick={toggleTheme}
-          >
-            {isDark ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </Button>
-        </div>
-
         <AlgorithmSelector
           value={algorithm}
           onChange={setAlgorithm}
@@ -282,6 +265,16 @@ export default function HashVerifier() {
         )}
       </div>
       <GitHubLink />
+      <AppVersion />
+      <Button
+        variant="ghost"
+        size="icon"
+        className="fixed bottom-4 left-4 text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
+        onClick={toggleTheme}
+        title="Toggle Theme"
+      >
+        {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      </Button>
     </div>
   );
 }
