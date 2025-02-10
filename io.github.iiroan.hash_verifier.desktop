@@ -8,3 +8,4 @@ Icon=io.github.iiroan.hash_verifier
 Categories=Security;Utility;
 Terminal=false
 StartupNotify=true
+StartupWMClass=hash_verifier

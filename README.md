@@ -29,10 +29,10 @@ flatpak install io.github.iiroan.hash_verifier
 **Via Package Managers:**
 ```bash
 # Debian/Ubuntu
-sudo dpkg -i hashverifier_0.1.7_amd64.deb
+sudo dpkg -i hashverifier_0.2_amd64.deb
 
 # Fedora/RHEL
-sudo rpm -i hashverifier-0.1.7.x86_64.rpm
+sudo rpm -i hashverifier-0.2.x86_64.rpm
 ```
 
 ## Features

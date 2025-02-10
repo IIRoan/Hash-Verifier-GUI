@@ -1,0 +1,7 @@
+{
+    "only-arches": ["x86_64", "aarch64"],
+    "skip-appstream-check": false,
+    "end-of-life": null,
+    "disable-sdk-extensions": false
+  }
+  

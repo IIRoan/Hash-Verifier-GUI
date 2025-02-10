@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "hashverifier",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "identifier": "io.github.iiroan.hashverifier",
   "build": {
     "beforeDevCommand": "bun run dev",
@@ -35,7 +35,7 @@
     "active": true,
     "category": "Utility",
     "copyright": "MIT",
-    "targets": ["deb", "rpm", "nsis"],
+    "targets": ["deb", "nsis"],
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
@@ -53,7 +53,6 @@
     },
     "linux": {
       "deb": {},
-      "rpm": {},
       "appimage": {
         "bundleMediaFramework": true
       }
