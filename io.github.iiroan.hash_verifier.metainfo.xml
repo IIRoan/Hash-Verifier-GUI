@@ -29,12 +29,12 @@
   
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/IIRoan/Hash-Verifier-GUI/local-files/images/image1.png</image>
-      <caption>Main interface showing hash verification</caption>
+      <image>https://raw.githubusercontent.com/IIRoan/Hash-Verifier-GUI/refs/tags/v0.2/images/image1.png</image>
+      <caption>Main interface showing file selection</caption>
     </screenshot>
     <screenshot type="additional">
-      <image>https://raw.githubusercontent.com/IIRoan/Hash-Verifier-GUI/local-files/images/image2.png</image>
-      <caption>Dark mode appearance</caption>
+      <image>https://raw.githubusercontent.com/IIRoan/Hash-Verifier-GUI/refs/tags/v0.2/images/image2.png</image>
+      <caption>Hashing in progress</caption>
     </screenshot>
   </screenshots>
   

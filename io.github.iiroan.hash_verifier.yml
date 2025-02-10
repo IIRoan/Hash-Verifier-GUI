@@ -5,15 +5,10 @@ sdk: org.gnome.Sdk
 command: hashverifier
 finish-args:
   - --socket=wayland
-  - --socket=fallback-x11
-  - --socket=x11
-  - --device=dri
   - --share=ipc
   - --env=WEBKIT_DISABLE_COMPOSITING_MODE=1
   - --filesystem=~/.themes:ro
   - --filesystem=/usr/share/themes:ro
-  - --filesystem=xdg-config/gtk-3.0:ro
-  - --filesystem=xdg-config/gtk-4.0:ro
 modules:
   - name: binary
     buildsystem: simple
