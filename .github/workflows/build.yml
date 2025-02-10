@@ -52,7 +52,7 @@ jobs:
             io.github.iiroan.hash_verifier.yml
           flatpak build-bundle repo hash-verifier.flatpak io.github.iiroan.hash_verifier
 
-            - name: Rename artifacts for release
+      - name: Rename artifacts for release
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           mv hash-verifier.flatpak "hash-verifier-${{ github.ref_name }}.flatpak"
