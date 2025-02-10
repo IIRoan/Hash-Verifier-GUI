@@ -1,10 +1,10 @@
 [Desktop Entry]
-Version=0.1.7
+Version=0.2
 Type=Application
 Name=Hash Verifier
 Comment=Verify file hashes
 Exec=hashverifier
 Icon=io.github.iiroan.hash_verifier
-Categories=Utility;Security;
+Categories=Security;Utility;
 Terminal=false
 StartupNotify=true

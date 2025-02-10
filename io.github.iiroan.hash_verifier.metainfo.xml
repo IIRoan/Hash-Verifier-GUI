@@ -1,46 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>io.github.iiroan.hash_verifier</id>
+  
   <name>Hash Verifier</name>
   <summary>Verify file hashes easily</summary>
+  
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
-
+  
   <description>
-    <p>
-      A simple and user-friendly tool to verify file hashes. Compare hashes of your files against known good hashes to verify file integrity.
-    </p>
+    <p>A simple and user-friendly tool to verify file hashes. Compare hashes of your files against known good hashes to verify file integrity.</p>
     <p>Features:</p>
     <ul>
-        <li>Support for multiple hash algorithms (SHA-256, SHA-512, MD5)</li>
-        <li>Dark mode support with system theme detection</li>
-        <li>Optimized performance with parallel processing for large files</li>
-        <li>One-click hash copying and verification</li>
-        <li>Memory-efficient handling of large files using memory mapping</li>
-        <li>Visual feedback for hash matching status</li>
+      <li>Support for multiple hash algorithms (SHA-256, SHA-512, MD5)</li>
+      <li>Dark mode support with system theme detection</li>
+      <li>Optimized performance with parallel processing for large files</li>
+      <li>One-click hash copying and verification</li>
+      <li>Memory-efficient handling of large files using memory mapping</li>
+      <li>Visual feedback for hash matching status</li>
     </ul>
   </description>
-
+  
+  <developer id="io.github.iiroan">
+    <name>IIRoan</name>
+  </developer>
+  
   <launchable type="desktop-id">io.github.iiroan.hash_verifier.desktop</launchable>
-
+  
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/IIRoan/Hash-Verifier-GUI/refs/heads/local-files/images/image1.png</image>
-      <caption>Main application window</caption>
+      <image>https://raw.githubusercontent.com/IIRoan/Hash-Verifier-GUI/local-files/images/image1.png</image>
+      <caption>Main interface showing hash verification</caption>
+    </screenshot>
+    <screenshot type="additional">
+      <image>https://raw.githubusercontent.com/IIRoan/Hash-Verifier-GUI/local-files/images/image2.png</image>
+      <caption>Dark mode appearance</caption>
     </screenshot>
   </screenshots>
-
+  
   <releases>
     <release version="0.1.7" date="2025-01-30">
       <description>
         <p>Initial release</p>
+        <ul>
+          <li>First version of Hash Verifier</li>
+          <li>Basic hash verification functionality</li>
+        </ul>
       </description>
     </release>
   </releases>
-
+  
   <url type="homepage">https://github.com/IIRoan/Hash-Verifier-GUI</url>
-  <developer_name>IIRoan</developer_name>
-  <update_contact>hash-gui@lunary.roan.zip</update_contact>
-
+  <url type="bugtracker">https://github.com/IIRoan/Hash-Verifier-GUI/issues</url>
+  <url type="vcs-browser">https://github.com/IIRoan/Hash-Verifier-GUI</url>
+  
+  <categories>
+    <category>Utility</category>
+    <category>System</category>
+  </categories>
+  
+  <keywords>
+    <keyword>hash</keyword>
+    <keyword>verification</keyword>
+    <keyword>file integrity</keyword>
+    <keyword>checksum</keyword>
+  </keywords>
+  
   <content_rating type="oars-1.1" />
+  
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+  
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  
+  <update_contact>hash-gui@lunary.roan.zip</update_contact>
 </component>

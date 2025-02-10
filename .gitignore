@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 .flatpak-builder
 /repo
+hash*.deb
+hash*.flatpak
