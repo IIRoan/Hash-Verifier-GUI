@@ -52,9 +52,11 @@ jobs:
             io.github.iiroan.hash_verifier.yml
           flatpak build-bundle repo hash-verifier.flatpak io.github.iiroan.hash_verifier
 
-      - name: Rename Flatpak for release
+            - name: Rename artifacts for release
         if: startsWith(github.ref, 'refs/tags/')
-        run: mv hash-verifier.flatpak "hash-verifier-${{ github.ref_name }}.flatpak"
+        run: |
+          mv hash-verifier.flatpak "hash-verifier-${{ github.ref_name }}.flatpak"
+          mv hashverifier.deb "hashverifier-${{ github.ref_name }}.deb"
 
       - name: Upload Release
         if: startsWith(github.ref, 'refs/tags/')
@@ -62,6 +64,7 @@ jobs:
         with:
           files: |
             hash-verifier-${{ github.ref_name }}.flatpak
+            hashverifier-${{ github.ref_name }}.deb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -70,7 +73,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: linux-build-artifacts
-          path: hash-verifier.flatpak
+          path: |
+            hash-verifier.flatpak
+            hashverifier.deb
 
   build-windows:
     runs-on: windows-latest
