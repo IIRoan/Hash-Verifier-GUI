@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>com.hashverifier.app</id>
+  <id>io.github.iiroan.hash_verifier</id>
   <name>Hash Verifier</name>
   <summary>Verify file hashes easily</summary>
   <metadata_license>CC0-1.0</metadata_license>
@@ -21,7 +21,7 @@
     </ul>
   </description>
 
-  <launchable type="desktop-id">com.hashverifier.app.desktop</launchable>
+  <launchable type="desktop-id">io.github.iiroan.hash_verifier.desktop</launchable>
 
   <screenshots>
     <screenshot type="default">

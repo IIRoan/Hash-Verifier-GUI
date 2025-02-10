@@ -23,7 +23,7 @@ scoop install Hash-Verifier-GUI
 ### Linux
 **Via Flatpak:**
 ```bash
-flatpak install com.hashverifier.app
+flatpak install io.github.iiroan.hash_verifier
 ```
 
 **Via Package Managers:**

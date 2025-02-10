@@ -1,0 +1,39 @@
+id: io.github.iiroan.hash_verifier
+runtime: org.gnome.Platform
+runtime-version: "47"
+sdk: org.gnome.Sdk
+command: hashverifier
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=x11
+  - --device=dri
+  - --share=ipc
+  - --filesystem=home:ro
+  - --env=WEBKIT_DISABLE_COMPOSITING_MODE=1
+modules:
+  - name: binary
+    buildsystem: simple
+    sources:
+      - type: file
+        path: hashverifier.deb
+      - type: dir
+        path: src-tauri/icons
+        dest: images/icons
+      - type: file
+        path: io.github.iiroan.hash_verifier.desktop
+      - type: file
+        path: io.github.iiroan.hash_verifier.metainfo.xml
+    build-commands:
+      - ar -x hashverifier.deb
+      - tar -xf data.tar.xz || tar -xf data.tar.gz
+      - "install -Dm755 usr/bin/hashverifier /app/bin/hashverifier"
+      - install -Dm644 io.github.iiroan.hash_verifier.desktop /app/share/applications/io.github.iiroan.hash_verifier.desktop
+      - install -Dm644 io.github.iiroan.hash_verifier.metainfo.xml /app/share/metainfo/io.github.iiroan.hash_verifier.metainfo.xml
+      - mkdir -p "/app/share/icons/hicolor/32x32/apps"
+      - mkdir -p "/app/share/icons/hicolor/128x128/apps"
+      - mkdir -p "/app/share/icons/hicolor/256x256/apps"
+      - install -Dm644 "images/icons/32x32.png" "/app/share/icons/hicolor/32x32/apps/io.github.iiroan.hash_verifier.png"
+      - install -Dm644 "images/icons/128x128.png" "/app/share/icons/hicolor/128x128/apps/io.github.iiroan.hash_verifier.png"
+      - install -Dm644 "images/icons/128x128@2x.png" "/app/share/icons/hicolor/256x256/apps/io.github.iiroan.hash_verifier.png"
+      - install -Dm644 "images/icons/icon.svg" "/app/share/icons/hicolor/scalable/apps/io.github.iiroan.hash_verifier.svg"

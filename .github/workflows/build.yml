@@ -49,19 +49,19 @@ jobs:
       - name: Build Flatpak
         run: |
           flatpak-builder --user --force-clean --repo=repo build-dir \
-            com.hashverifier.app.yml
-          flatpak build-bundle repo hashverifier.flatpak com.hashverifier.app
+            io.github.iiroan.hash_verifier.yml
+          flatpak build-bundle repo hash-verifier.flatpak io.github.iiroan.hash_verifier
 
       - name: Rename Flatpak for release
         if: startsWith(github.ref, 'refs/tags/')
-        run: mv hashverifier.flatpak "hashverifier-${{ github.ref_name }}.flatpak"
+        run: mv hash-verifier.flatpak "hash-verifier-${{ github.ref_name }}.flatpak"
 
       - name: Upload Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            hashverifier-${{ github.ref_name }}.flatpak
+            hash-verifier-${{ github.ref_name }}.flatpak
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -70,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: linux-build-artifacts
-          path: hashverifier.flatpak
+          path: hash-verifier.flatpak
 
   build-windows:
     runs-on: windows-latest
